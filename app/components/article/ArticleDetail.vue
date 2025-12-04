@@ -91,7 +91,7 @@ function InitGaaMetering() {
   GaaMetering.init({
     googleApiClientId: '1075765094546-2rri7lpa3mgg5sbe995p0hmsd5i10mv5.apps.googleusercontent.com',
     userState,
-    allowedReferrers: ['http://localhost:3000', 'https://tempo.co', 'https://dua.tempo.co', 'https://koran.tempo.co', 'https://subscribe.tempo.co', 'https://subscribe.staging.tempo.co'],
+    allowedReferrers: ['http://localhost:3000', 'https://tempo.co', 'https://dua.tempo.co', 'https://nuxt-google-extended.vercel.app', 'https://koran.tempo.co', 'https://subscribe.tempo.co', 'https://subscribe.staging.tempo.co'],
     // handleLoginPromise: handleRedirectLoginPromise,
     registerUserPromise: handleRegisterUserPromise,
     publisherEntitlementPromise: handlePublisherEntitlementPromise,

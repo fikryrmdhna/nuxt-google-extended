@@ -1,7 +1,7 @@
 import { computed } from 'vue'
-import type { ArticleDetail } from '~/composables/services/article/type'
-import { articleContentFormatter } from '~/utils/text'
-import { dateWithTimeZone } from '~/utils/date'
+import type { ArticleDetail } from '../types/article'
+import { articleContentFormatter } from '../utils/text'
+import { dateWithTimeZone } from '../utils/date'
 
 export interface Breadcrumb {
   name: string
@@ -44,7 +44,7 @@ export function useJsonLd(article: ArticleDetail, breadcrumbs: Breadcrumb[], has
       },
       'mainEntityOfPage': {
         '@type': 'WebPage',
-        '@id': `https://tempo.co/${article?.canonical_url}`,
+        '@id': `https://nuxt-google-extended.vercel.app/${article?.canonical_url}`,
       },
       'wordCount': article?.word_count,
     }
