@@ -33,7 +33,9 @@ watch(() => saveStatus, (newSaveStatus: any) => {
 })
 
 watchEffect(() => {
+  console.log(isMounted.value, typeof GaaMetering !== 'undefined')
   if (isMounted.value && typeof GaaMetering !== 'undefined') {
+    console.log('isMounted and GaaMetering is defined')
     if (GaaMetering.isGaa()) {
       console.log('running InitGaaMetering')
       InitGaaMetering()
