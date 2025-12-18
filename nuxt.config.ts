@@ -89,10 +89,6 @@ export default defineNuxtConfig({
           'async': true,
           'subscriptions-control': 'manual',
         },
-        {
-          src: 'https://news.google.com/swg/js/v1/swg-gaa.js',
-          async: true,
-        },
       ],
       __dangerouslyDisableSanitizers: ['script'],
     },

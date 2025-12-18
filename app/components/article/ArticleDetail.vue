@@ -7,7 +7,7 @@ const {
   article: ArticleDetailResponse | null
 }>()
 
-const isMounted = ref(false)
+// const isMounted = ref(false)
 
 const content = ref('')
 if (article && article?.data && article?.data?.content) {
@@ -29,17 +29,6 @@ watch(() => saveStatus, (newSaveStatus: any) => {
     setTimeout(() => {
       saveStatus.value = null
     }, 3000)
-  }
-})
-
-watchEffect(() => {
-  console.log(isMounted.value, typeof GaaMetering !== 'undefined')
-  if (isMounted.value && typeof GaaMetering !== 'undefined') {
-    console.log('isMounted and GaaMetering is defined')
-    if (GaaMetering.isGaa()) {
-      console.log('running InitGaaMetering')
-      InitGaaMetering()
-    }
   }
 })
 
@@ -105,6 +94,27 @@ function InitGaaMetering() {
 
   console.log('isGaa?', GaaMetering.isGaa(), GaaMetering.init())
 }
+
+const loadGaaScript = ref(false)
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    window.InitGaaMetering = InitGaaMetering
+    loadGaaScript.value = true
+  }
+})
+
+useHead({
+  script: computed(() => loadGaaScript.value
+    ? [
+        {
+          src: 'https://news.google.com/swg/js/v1/swg-gaa.js',
+          async: true,
+          onload: 'InitGaaMetering',
+        },
+      ]
+    : []),
+})
 </script>
 
 <template>
