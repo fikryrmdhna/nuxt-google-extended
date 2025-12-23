@@ -53,16 +53,16 @@ function InitGaaMetering() {
     resolve(userState)
   })
 
-  // const handleRedirectLoginPromise = new Promise((resolve) => {
-  // GaaMetering.getLoginPromise().then(() => {
-  //   // TODO: Handle login for the existing user and resolve the userState.
-  //   // Example userState below is for a registered user with no publisher access.
-  //   const loggedInUserState = {
-  //     granted: false,
-  //   }
-  //   resolve(loggedInUserState)
-  // })
-  // })
+  const handleRedirectLoginPromise = new Promise((resolve) => {
+    GaaMetering.getLoginPromise().then(() => {
+      // TODO: Handle login for the existing user and resolve the userState.
+      // Example userState below is for a registered user with no publisher access.
+      const loggedInUserState = {
+        granted: false,
+      }
+      resolve(loggedInUserState)
+    })
+  })
 
   function handleSwgEntitlement(entitlement) {
     // TODO: Handle SwG entitlement if you implement SwG.
@@ -83,7 +83,7 @@ function InitGaaMetering() {
     googleApiClientId: '1075765094546-2rri7lpa3mgg5sbe995p0hmsd5i10mv5.apps.googleusercontent.com',
     userState,
     allowedReferrers: ['http://localhost:3000', 'https://tempo.co', 'https://dua.tempo.co', 'https://nuxt-google-extended.vercel.app', 'https://koran.tempo.co', 'https://subscribe.tempo.co', 'https://subscribe.staging.tempo.co'],
-    // handleLoginPromise: handleRedirectLoginPromise,
+    handleLoginPromise: handleRedirectLoginPromise,
     registerUserPromise: handleRegisterUserPromise,
     publisherEntitlementPromise: handlePublisherEntitlementPromise,
     unlockArticle: handleUnlockArticle,
