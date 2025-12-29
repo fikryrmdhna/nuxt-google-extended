@@ -33,6 +33,7 @@ watch(() => saveStatus, (newSaveStatus: any) => {
 })
 
 function InitGaaMetering() {
+  console.log('InitGaaMetering START')
   const userState = { granted: false }
 
   const handleRegisterUserPromise = new Promise((resolve) => {
@@ -89,7 +90,7 @@ function InitGaaMetering() {
     unlockArticle: handleUnlockArticle,
     showPaywall: handleShowPaywall,
     handleSwGEntitlement: handleSwgEntitlement,
-    shouldInitializeSwG: false,
+    shouldInitializeSwG: true,
   })
 
   console.log('isGaa?', GaaMetering.isGaa(), GaaMetering.init())
@@ -99,6 +100,7 @@ const loadGaaScript = ref(false)
 
 onMounted(() => {
   if (typeof window !== 'undefined') {
+    console.log('Assigning InitGaaMetering to window')
     window.InitGaaMetering = InitGaaMetering
     loadGaaScript.value = true
   }
@@ -110,7 +112,10 @@ useHead({
         {
           src: 'https://news.google.com/swg/js/v1/swg-gaa.js',
           async: true,
-          onload: 'InitGaaMetering',
+          onload: () => {
+            console.log('swg-gaa loaded callback triggered')
+            InitGaaMetering()
+          },
         },
       ]
     : []),
