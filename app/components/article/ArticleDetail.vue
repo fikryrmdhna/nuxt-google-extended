@@ -15,7 +15,6 @@ if (article && article?.data && article?.data?.content) {
 }
 
 const saveStatus = ref<boolean | null>(null)
-
 const adScripts = ref()
 
 watch(adScripts, (scripts: any) => {
